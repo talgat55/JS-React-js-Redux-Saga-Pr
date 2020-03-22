@@ -1,4 +1,4 @@
-import {CREATE_POST, FETCH_POST, HIDE_LOADER, SHOW_LOADER} from "./types";
+import {CREATE_POST, FETCH_POST, HIDE_LOADER, REQUEST_POSTS, SHOW_LOADER} from "./types";
 
 export function createPost(post) {
     return {
@@ -19,11 +19,14 @@ export function hideLoader() {
 }
 
 export function fetchPost() {
-    return  async dispatch => {
-        dispatch(showLoader());
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_page=1');
-        const json = await response.json();
-        dispatch(hideLoader());
-        dispatch({type: FETCH_POST, payload: json});
+    return {
+        type: REQUEST_POSTS
     }
+    // return  async dispatch => {
+    //     dispatch(showLoader());
+    //     const response = await fetch('https://jsonplaceholder.typicode.com/posts?_page=1');
+    //     const json = await response.json();
+    //     dispatch(hideLoader());
+    //     dispatch({type: FETCH_POST, payload: json});
+    // }
 }
